@@ -1,0 +1,192 @@
+
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  overflow-x: hidden;
+}
+
+.text-gradient {
+  background: #6400ff; /* Fallback color */
+  background: -webkit-linear-gradient(16deg, #6f00ff, #6400ff);
+  background: linear-gradient(16deg, #6f00ff, #6400ff); /* Standard syntax */
+  -webkit-background-clip: text;
+  background-clip: text; /* Standard syntax */
+  -webkit-text-fill-color: transparent;
+}
+
+.grid-cols-auto-fill-180 {
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+}
+
+.scroll-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scroll-hide {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.loader {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.bg-size-custom {
+  background-size: 800px 50px;
+}
+
+.bg-animation-custom {
+  animation: loader 4s infinite linear;
+}
+
+.bg-gradient-custom {
+  background: linear-gradient(to right, #b1d5ee, #c953e98a, #9ed7ff);
+}
+
+@keyframes loader {
+  0% {
+    background-position: -800px 0px;
+  }
+  100% {
+    background-position: 800px 0px;
+  }
+}
+
+@media (max-width: 600px) {
+  .main-buttom input {
+    flex: none;
+    width: 150px;
+  }
+
+  .main-bottom img {
+    width: 20px;
+  }
+  .search-box {
+    padding: 5px 10px;
+  }
+  .search-box div {
+    gap: 5px;
+  }
+}
+
+@media (min-width: 600px) {
+  .card {
+    width: 48%;
+    height: 170px;
+  }
+}
+@media (min-width: 1024px) {
+  .card {
+    width: 22%;
+  }
+}
+
+.markdown-output * {
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+
+
+.markdown-output pre {
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow-x: auto;
+  background-color: #1D202A;
+  color: #f1f1f1; /* Light text for contrast */
+  padding: 1rem 1.25rem;
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: 'Fira Code', monospace;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  line-height: 1.6;
+  box-sizing: border-box;
+  max-width: 100%;
+ 
+}
+
+
+.markdown-output code {
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.result,
+.markdown-output {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+@media (min-width: 768px) {
+  .markdown-output,
+  .markdown-output pre {
+    max-width: 100%;
+  }
+}
+
+.result::-webkit-scrollbar,
+.saved-chats::-webkit-scrollbar {
+  width: 5px;
+  background: transparent;
+  cursor: pointer;
+}
+
+.result::-webkit-scrollbar-track,
+.saved-chats::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.result::-webkit-scrollbar-thumb,
+.saved-chats::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.result::-webkit-scrollbar-thumb:hover,
+.saved-chats::-webkit-scrollbar-thumb:hover {
+  background: #555;
+  cursor: pointer;
+}
+
+.saved-chats {
+  scrollbar-width: thin;
+  scrollbar-color: #888 transparent;
+  -ms-overflow-style: none;
+}
+.saved-chats::-webkit-scrollbar {
+  width: 6px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.saved-chats.scrolling::-webkit-scrollbar {
+  opacity: 1;
+}
+
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #888 #f1f1f1;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

@@ -1,0 +1,130 @@
+.user-card {
+  width: 90%;
+}
+
+.user-cards {
+  margin-top: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.user-name{
+    font-size: 16px;
+    font-weight: 600;
+}
+@media screen and (min-width: 425px) and (max-width: 600px){
+.user-card {
+    width: 80%;
+  }
+}
+@media screen and (min-width: 601px) and (max-width: 767px) {
+  .user-card {
+    width: 48%;
+  }
+
+  .user-cards {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: start;
+    gap: 20px;
+  }
+  .skills {
+    height: 80px;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 860px) {
+  .user-card {
+    width: 400px;
+  }
+
+  .user-cards {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .user-name{
+    font-size: 20px;
+    font-weight: 600;
+}
+}
+
+
+@media screen and (min-width: 861px) and (max-width:1023px) {
+  .user-card {
+    width: 48%;
+  }
+
+    .user-cards {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: start;
+    gap: 20px;
+  }
+  .skills {
+    height: 80px;
+  }
+   
+}
+
+ @media screen and (min-width: 1024px) and (max-width:1130px) {
+  .user-card {
+    width: 43%;
+  }
+  .user-cards {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: start;
+    gap: 10px;
+    width: 100%;
+    margin-left: 5%;
+  }
+  .skills {
+    height: 80px;
+  }
+}
+
+@media (min-width: 1131px) {
+  .user-card {
+    width: 32.5%;
+  }
+  .user-cards {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: start;
+    gap: 10px;
+    margin-left: 3%;
+  }
+  .skills {
+    height: 80px;
+  }
+} 
+
+@media (min-width: 1300px){
+    .user-card {
+    width: 30%;
+  }
+  .user-cards{
+    gap: 20px;
+  }
+
+}
+@media (min-width: 2000px){
+    .user-card {
+    width: 400px;
+  }
+  .user-cards{
+    /* width: 70%; */
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+}

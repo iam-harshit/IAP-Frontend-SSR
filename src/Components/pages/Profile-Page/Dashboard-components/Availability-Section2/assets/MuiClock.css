@@ -1,0 +1,16 @@
+.MuiClock-pin {
+  background-color: #dac0f5 !important; /* Custom center pin */
+}
+
+.MuiClockPointer-root {
+  background-color: #dac0f5 !important; /* Custom pointer */
+}
+
+.MuiClockPointer-thumb {
+  border-color: #dac0f5 !important; /* Custom thumb */
+  background-color: #dac0f5 !important;
+}
+
+::-webkit-scrollbar {
+  /* display: none; */
+}

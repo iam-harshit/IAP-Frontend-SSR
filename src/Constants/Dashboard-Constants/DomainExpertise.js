@@ -1,0 +1,33 @@
+export const DomainExpertise = {
+  Technology: [
+    'Frontend Engineer',
+    'Backend Engineer',
+    'DevOps Engineer',
+    'QA Engineer',
+    'Data Scientist',
+    'Machine Learning Engineer',
+    'Cloud Architect',
+    'Full Stack Developer',
+    'Mobile App Developer',
+    'Cybersecurity Specialist',
+    'Software Architect',
+    'System Administrator',
+  ],
+  Design: [
+    'Graphic Designer',
+    'UI/UX Designer',
+    'Product Designer',
+    'Branding Specialist',
+    'Illustrator',
+    'Video Editor',
+    'Animator',
+  ],
+  Spiritual: ['Yoga Instructor', 'Meditation Teacher', 'Life Coach'],
+  Finance: [
+    'Financial Analyst',
+    'Investment Banker',
+    'Accountant',
+    'Risk Manager',
+    'Personal Financial Advisor',
+  ],
+};

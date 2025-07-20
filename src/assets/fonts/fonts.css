@@ -1,0 +1,143 @@
+/* ==== QUROVA FONT FAMILY ==== */
+
+@font-face {
+  font-family: 'Qurova';
+  src:
+    url('./qurova/woff/Qurova-Light.woff2') format('woff2'),
+    url('./qurova/woff/Qurova-Light.woff') format('woff'),
+    url('./qurova/ttf/Qurova-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Qurova';
+  src:
+    url('./qurova/woff/Qurova-Regular.woff2') format('woff2'),
+    url('./qurova/woff/Qurova-Regular.woff') format('woff'),
+    url('./qurova/ttf/Qurova-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Qurova';
+  src:
+    url('./qurova/woff/Qurova-Medium.woff2') format('woff2'),
+    url('./qurova/woff/Qurova-Medium.woff') format('woff'),
+    url('./qurova/ttf/Qurova-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Qurova';
+  src:
+    url('./qurova/woff/Qurova-SemiBold.woff2') format('woff2'),
+    url('./qurova/woff/Qurova-SemiBold.woff') format('woff'),
+    url('./qurova/ttf/Qurova-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Qurova';
+  src:
+    url('./qurova/woff/Qurova-Bold.woff2') format('woff2'),
+    url('./qurova/woff/Qurova-Bold.woff') format('woff'),
+    url('./qurova/ttf/Qurova-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+/* ==== FUTURU FONT FAMILY ==== */
+
+@font-face {
+  font-family: 'Futuru';
+  src:
+    url('./futuru/woff/Futuru-Thin.woff2') format('woff2'),
+    url('./futuru/woff/Futuru-Thin.woff') format('woff'),
+    url('./futuru/ttf/Futuru-Thin.ttf') format('truetype');
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Futuru';
+  src:
+    url('./futuru/woff/Futuru-Extralight.woff2') format('woff2'),
+    url('./futuru/woff/Futuru-Extralight.woff') format('woff'),
+    url('./futuru/ttf/Futuru-Extralight.ttf') format('truetype');
+  font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Futuru';
+  src:
+    url('./futuru/woff/Futuru-Light.woff2') format('woff2'),
+    url('./futuru/woff/Futuru-Light.woff') format('woff'),
+    url('./futuru/ttf/Futuru-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Futuru';
+  src:
+    url('./futuru/woff/Futuru-Regular.woff2') format('woff2'),
+    url('./futuru/woff/Futuru-Regular.woff') format('woff'),
+    url('./futuru/ttf/Futuru-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Futuru';
+  src:
+    url('./futuru/woff/Futuru-Medium.woff2') format('woff2'),
+    url('./futuru/woff/Futuru-Medium.woff') format('woff'),
+    url('./futuru/ttf/Futuru-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Futuru';
+  src:
+    url('./futuru/woff/Futuru-Semibold.woff2') format('woff2'),
+    url('./futuru/woff/Futuru-Semibold.woff') format('woff'),
+    url('./futuru/ttf/Futuru-Semibold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Futuru';
+  src:
+    url('./futuru/woff/Futuru-Bold.woff2') format('woff2'),
+    url('./futuru/woff/Futuru-Bold.woff') format('woff'),
+    url('./futuru/ttf/Futuru-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Futuru';
+  src:
+    url('./futuru/woff/Futuru-Extrabold.woff2') format('woff2'),
+    url('./futuru/woff/Futuru-Extrabold.woff') format('woff'),
+    url('./futuru/ttf/Futuru-Extrabold.ttf') format('truetype');
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Futuru';
+  src:
+    url('./futuru/woff/Futuru-Black.woff2') format('woff2'),
+    url('./futuru/woff/Futuru-Black.woff') format('woff'),
+    url('./futuru/ttf/Futuru-Black.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+}

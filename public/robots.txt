@@ -1,0 +1,4 @@
+# Allow all bots to crawl everything
+User-agent: * 
+Disallow: /dashboard/
+Sitemap: https://inspirationapp.org/sitemap.xml

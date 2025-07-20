@@ -1,0 +1,20 @@
+
+@media screen and (min-width:850px) and (max-width:1023px){
+  .pod-card{
+width: 31%;
+  }
+  .group:hover .label{
+  transform: translateY(-520%);
+}
+}
+
+.ql-editor {
+  cursor: pointer;
+}
+.ql-editor::-webkit-scrollbar {
+  width: 6px;
+}
+.ql-editor::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 3px;
+}

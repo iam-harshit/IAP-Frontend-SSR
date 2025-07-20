@@ -1,0 +1,36 @@
+.mini-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #e0e0e0 #ffffff;
+  transition: scrollbar-color 0.3s;
+}
+.mini-scrollbar::-webkit-scrollbar {
+  height: 6px;
+  transition: background 0.3s;
+  background: transparent;
+}
+.mini-scrollbar:hover::-webkit-scrollbar {
+  background: #f5f5f5;
+}
+.mini-scrollbar::-webkit-scrollbar-thumb {
+  background: #e0e0e0;
+  border-radius: 6px;
+  transition: background 0.3s;
+}
+.mini-scrollbar:hover::-webkit-scrollbar-thumb {
+  background: #bdbdbd;
+}
+.mini-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.calendar-loader {
+  @apply flex items-center justify-center p-8;
+}
+
+.calendar-error {
+  @apply text-red-500 p-4 text-center;
+}
+
+.calendar-empty {
+  @apply text-gray-500 p-4 text-center;
+}

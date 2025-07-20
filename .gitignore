@@ -1,0 +1,68 @@
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# firebase config file
+config/firebaseConfig.json
+config/serviceAccountKey.json
+config/firebaseConfig.json
+config/serviceAccountKey.json
+
+# Capacitor native Android files
+
+# Android Studio project files
+/android/.gradle/
+/android/.idea/
+/android/local.properties
+/android/build/
+/android/app/build/
+/android/captain/ # if present
+/android/captain.lock # if present
+/android/.cxx/
+
+# Ignore Android Studio workspace files
+android/.idea/workspace.xml
+android/.idea/tasks.xml
+android/.idea/dictionaries/
+android/.idea/libraries/
+
+# Ignore generated files
+android/captain/
+android/captain.lock
+
+# IntelliJ files
+*.iml
+*.iws
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+
+# Capacitor web assets (optional, if build is committed)
+/build/
+
+# .env
+package-lock.json

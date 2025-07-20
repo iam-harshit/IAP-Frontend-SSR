@@ -1,0 +1,6 @@
+{
+  "appId": "com.cbs.inspirationapp",
+  "appName": "inspirationapp",
+  "webDir": "dist",
+  "bundledWebRuntime": false
+}
