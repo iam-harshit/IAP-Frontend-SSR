@@ -1,28 +1,16 @@
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import { dangerouslySkipEscape, escapeInject } from 'vike/server';
-import { PageShell } from './renderer/PageShell';
+import { PageShell } from '../renderer/PageShell.jsx';
 import { Provider } from 'react-redux';
-import { createServerStore } from '../src/Store/store';
+import { createServerStore } from '@/Store/store.js';
 
 export async function onRenderHtml(pageContext) {
-  // `pageContext.data.initialState` comes directly from your `+data.js` file.
+  // `pageContext.data.initialState` now comes directly from your `+data.js` file.
   const { Page, pageProps, data } = pageContext;
 
-  // Defensive fallback for initialState
-  const initialState =
-    data &&
-    typeof data === 'object' &&
-    data.initialState &&
-    typeof data.initialState === 'object'
-      ? data.initialState
-      : {};
-
-  // 1. Create the server store here, using the initial state.
-  console.error('pageContext.data:', data);
-  console.error('pageContext.data.initialState:', initialState);
-  const store = createServerStore(initialState);
-  console.error('store:', store);
+  // 1. Create the server store here, passing in the initial state from the data hook.
+  const store = createServerStore(data.initialState);
 
   // 2. The store is guaranteed to be defined when passed to the Provider.
   const pageHtml = ReactDOMServer.renderToString(
@@ -34,12 +22,15 @@ export async function onRenderHtml(pageContext) {
   );
 
   const title = pageContext.config.title || 'Inspiration App';
-  // Use the state from the store we just created.
   const storeInitialState = store.getState();
 
   const documentHtml = escapeInject`<!DOCTYPE html>
     <html lang="en">
-      <head><title>${title}</title></head>
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>${title}</title>
+      </head>
       <body>
         <div id="root">${dangerouslySkipEscape(pageHtml)}</div>
         <script>window.__INITIAL_STATE__ = ${JSON.stringify(storeInitialState)}</script>
