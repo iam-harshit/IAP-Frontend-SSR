@@ -1,27 +1,34 @@
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import { dangerouslySkipEscape, escapeInject } from 'vike/server';
-import { PageShell } from '../renderer/PageShell.jsx';
+import { PageShell } from '../renderer/PageShell';
 import { Provider } from 'react-redux';
 import { createServerStore } from '@/Store/store.js';
+import { StaticRouter } from 'react-router-dom/server';
+
+// 1. Import 'react-helmet-async' as suggested by the error message
+import HelmetAsync from 'react-helmet-async';
+const { HelmetProvider } = HelmetAsync;
 
 export async function onRenderHtml(pageContext) {
-  // `pageContext.data.initialState` now comes directly from your `+data.js` file.
-  const { Page, pageProps, data } = pageContext;
+  const { Page, pageProps, data, urlOriginal } = pageContext;
 
-  // 1. Create the server store here, passing in the initial state from the data hook.
-  const store = createServerStore(data.initialState);
+  const store = createServerStore(data?.initialState || {});
+  const helmetContext = {};
 
-  // 2. The store is guaranteed to be defined when passed to the Provider.
   const pageHtml = ReactDOMServer.renderToString(
-    <PageShell pageContext={pageContext}>
-      <Provider store={store}>
-        <Page {...pageProps} />
-      </Provider>
-    </PageShell>
+    <HelmetProvider context={helmetContext}>
+      <PageShell pageContext={pageContext}>
+        <StaticRouter location={urlOriginal}>
+          <Provider store={store}>
+            <Page {...pageProps} />
+          </Provider>
+        </StaticRouter>
+      </PageShell>
+    </HelmetProvider>
   );
 
-  const title = pageContext.config.title || 'Inspiration App';
+  const { helmet } = helmetContext;
   const storeInitialState = store.getState();
 
   const documentHtml = escapeInject`<!DOCTYPE html>
@@ -29,11 +36,15 @@ export async function onRenderHtml(pageContext) {
       <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>${title}</title>
+        ${dangerouslySkipEscape(helmet.title.toString())}
+        ${dangerouslySkipEscape(helmet.meta.toString())}
+        ${dangerouslySkipEscape(helmet.link.toString())}
       </head>
       <body>
         <div id="root">${dangerouslySkipEscape(pageHtml)}</div>
-        <script>window.__INITIAL_STATE__ = ${JSON.stringify(storeInitialState)}</script>
+        <script>
+          window.__INITIAL_STATE__ = ${dangerouslySkipEscape(JSON.stringify(storeInitialState))}
+        </script>
       </body>
     </html>`;
 
