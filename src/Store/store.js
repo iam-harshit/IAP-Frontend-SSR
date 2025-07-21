@@ -1,33 +1,19 @@
-import pkg from '@reduxjs/toolkit';
-import userReducer from '@/Reducers/userSlice';
-import eventsReducer from '@/Reducers/eventsSlice';
-import { persistReducer, persistStore } from 'redux-persist';
-// import storage from 'redux-persist/lib/storage';
-import sessionReducer from '../Reducers/sessionSlice';
-import storage from './storage.js';
+import { configureStore } from '@reduxjs/toolkit';
+import rootReducer from '@/Reducers/rootReducer';
 
-const { configureStore, combineReducers } = pkg;
+// This file is ONLY for the server.
 
-const rootReducer = combineReducers({
-  user: userReducer,
-  session: sessionReducer,
-  events: eventsReducer,
-});
-
-const persistConfig = {
-  key: 'root',
-  version: 1,
-  storage,
+/**
+ * Creates a new, non-persisted Redux store instance for each server-side request.
+ * This is the final, correct version.
+ */
+export const createServerStore = (preloadedState) => {
+  console.log("Hello, I'm in");
+  return configureStore({
+    reducer: rootReducer,
+    preloadedState,
+    // By completely OMITTING the 'middleware' key, we force Redux Toolkit
+    // to use its absolute internal default. This is the most stable option
+    // in a conflicting SSR environment and still includes the thunk middleware.
+  });
 };
-
-const persistedReducer = persistReducer(persistConfig, rootReducer);
-
-export const store = configureStore({
-  reducer: persistedReducer,
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({
-      serializableCheck: false,
-    }),
-});
-
-export const persistor = persistStore(store);

@@ -1,10 +1,7 @@
-// src/Reducers/userSlice.js
-import pkg from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { profileEndpoints } from '@/services/BackendApis';
 
-const { createSlice, createAsyncThunk } = pkg;
-// Define the async action
 export const updateUserAsync = createAsyncThunk(
   'user/updateUserAsync',
   async (user, { dispatch, getState }) => {
@@ -12,19 +9,13 @@ export const updateUserAsync = createAsyncThunk(
       ...getState().user.currentUser,
       ...user,
     };
-
-    try {
-      const response = await axios.put(
-        profileEndpoints.UPDATE_PROFILE_API,
-        updatedUserResponse,
-        { withCredentials: true }
-      );
-      dispatch(updateUser(response.data.data));
-      return response.data.data;
-    } catch (error) {
-      console.error(error.response.data);
-      throw error;
-    }
+    const response = await axios.put(
+      profileEndpoints.UPDATE_PROFILE_API,
+      updatedUserResponse,
+      { withCredentials: true }
+    );
+    dispatch(updateUser(response.data.data));
+    return response.data.data;
   }
 );
 
@@ -41,7 +32,6 @@ const parseDate = (dateStr) => {
   if (!dateStr) {
     return { startDate: null, endDate: null };
   }
-
   const dateParts = dateStr.split('–');
   try {
     if (dateParts.length === 2) {
@@ -73,7 +63,6 @@ const userSlice = createSlice({
     },
     signInSuccess: (state, action) => {
       state.currentUser = action.payload;
-      // console.log(action.payload)
       state.loading = false;
       state.error = false;
     },
@@ -88,30 +77,13 @@ const userSlice = createSlice({
       state.currentUser = {
         ...state.currentUser,
         ...action.payload,
-        // userResponse: p{
-        //   ...state.currentUser.userResponse,
-        //   ...action.payload,
-        // },
       };
     },
-    updateAbout: (state, action) => {
-      state.currentUser = {
-        ...state.currentUser,
-        userResponse: {
-          ...state.currentUser.userResponse,
-        },
-      };
-    },
-    // Mentor/Mentee Update
     updateProfileDetails: (state, action) => {
       state.profileDetails = action.payload;
     },
-    // Mentor/Mentee Update
     toggleShowOnProfile: (state, action) => {
-      state.currentUser = {
-        ...state.currentUser,
-        showOnProfile: action.payload === false ? 0 : 1,
-      };
+      state.currentUser.showOnProfile = action.payload === false ? 0 : 1;
     },
     setEditing: (state, action) => {
       state.isEditing = action.payload;
@@ -121,7 +93,6 @@ const userSlice = createSlice({
     },
     setJsonData: (state, action) => {
       const { education, experience } = action.payload;
-
       const formattedEducation = education.map((edu) => {
         const { startDate, endDate } = parseDate(edu.dates);
         return {
@@ -131,7 +102,6 @@ const userSlice = createSlice({
           endDate,
         };
       });
-
       const formattedWork = experience?.map((exp) => {
         const { startDate, endDate } = parseDate(exp.dates);
         return {
@@ -142,28 +112,12 @@ const userSlice = createSlice({
           description: exp.description,
         };
       });
-
-      state.currentUser = {
-        ...state.currentUser,
-        userResponse: {
-          ...state.currentUser.userResponse,
-          userProfile: {
-            ...state.currentUser.userResponse.userProfile,
-            workAndEducation: {
-              work: formattedWork,
-              education: formattedEducation,
-            },
-          },
-        },
+      state.currentUser.userResponse.userProfile.workAndEducation = {
+        work: formattedWork,
+        education: formattedEducation,
       };
     },
   },
-  // extraReducers: (builder) => {
-  //   builder.addCase(updateUserAsync.fulfilled, (state, action) => {
-  //     state.currentUser.userResponse = action.payload;
-  //   });
-  // },
-
   extraReducers: (builder) => {
     builder.addCase(updateUserAsync.fulfilled, (state, action) => {
       state.currentUser.userResponse = action.payload;

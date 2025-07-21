@@ -1,7 +1,5 @@
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { handleGetDashboardSessions } from '@/services/Operations/SessionsOperation/SessionApi';
-import pkg from '@reduxjs/toolkit';
-
-const { createSlice, createAsyncThunk } = pkg;
 
 export const fetchDashboardSessions = createAsyncThunk(
   'session/fetchDashboardSessions',
@@ -24,13 +22,11 @@ export const fetchDashboardSessions = createAsyncThunk(
   }
 );
 
-// Initial state
 const initialState = {
   sessions: [],
   cancellationPoint: null,
   loading: false,
   error: null,
-
   dashboardSessions: [],
   currentFilter: 'all',
   selectedDate: '',
@@ -57,7 +53,6 @@ const sessionSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      // Dashboard Sessions
       .addCase(fetchDashboardSessions.pending, (state) => {
         state.dashboardLoading = true;
         state.dashboardError = null;

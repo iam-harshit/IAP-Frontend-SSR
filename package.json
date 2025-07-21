@@ -4,10 +4,11 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development vike dev",
+    "dev": "cross-env NODE_ENV=development node src/server/index.js",
     "build": "vite build",
+    "start": "cross-env NODE_ENV=production node src/server/index.js",
+    "preview": "npm run build && npm run start",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview",
     "format": "prettier --write ."
   },
   "dependencies": {
@@ -34,6 +35,7 @@
     "dompurify": "^3.2.6",
     "dotenv": "^16.4.5",
     "emoji-picker-react": "^4.12.2",
+    "express": "^5.1.0",
     "firebase": "^10.7.1",
     "framer-motion": "^12.15.0",
     "highlight.js": "^11.10.0",
@@ -73,7 +75,8 @@
     "swiper": "^11.2.10",
     "tailwind-merge": "^3.0.2",
     "tw-elements": "^1.0.0",
-    "vike": "^0.4.236"
+    "vike": "^0.4.236",
+    "vike-react": "^0.6.5"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.16",

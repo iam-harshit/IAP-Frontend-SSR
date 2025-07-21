@@ -17,7 +17,7 @@ import IAPFAQSection from '@/Components/pages/Home-Page/IAPFAQSection';
 import OfferingsToggle from '@/Components/pages/Home-Page/OfferingsToggle';
 import AchievementsSection from '@/Components/pages/Home-Page/Achivements/AchievementsSection';
 
-const Page = () => {
+const Home = () => {
   // const [isModalOpen, setIsModalOpen] = useState(true);
   const [categoriesDropDown, setCategoriesDropdown] = useState(false);
 
@@ -213,4 +213,4 @@ const Page = () => {
   );
 };
 
-export default { Page };
+export default Home;

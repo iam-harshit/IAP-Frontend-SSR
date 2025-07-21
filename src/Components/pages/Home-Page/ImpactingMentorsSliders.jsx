@@ -1,13 +1,20 @@
 import React from 'react';
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
+
+// 1. Import Swiper React components, modules, and styles
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+
+// Your existing imports and ProfileCard component remain the same
 import arrow from '@/assets/Home=Page/arrow.svg';
 import CountUp from 'react-countup';
 import { FaCircleCheck } from 'react-icons/fa6';
 import { IoIosStarOutline } from 'react-icons/io';
 import { CiCalendar } from 'react-icons/ci';
 
+// The ProfileCard component does not need any changes.
 const ProfileCard = ({
   name,
   role,
@@ -36,7 +43,6 @@ const ProfileCard = ({
             <img src={profileImage} alt="Profile" className="w-full h-full" />
           </div>
           <div className="absolute top-[-36px] left-[8px] text-white">
-            {/* Verified Mentor */}
             <span className="flex justify-start items-center gap-1 p-1 ">
               <div className="border-[1px] border-[#8800ff] p-2 rounded-full shadow-1 shadow-[#8800ff] bg-slate-50">
                 <FaCircleCheck className="text-[#8800ff] text-xs" />
@@ -83,7 +89,6 @@ const ProfileCard = ({
           </div>
         </div>
 
-        {/* Language Tags */}
         <div className="flex justify-center py-[12px] bg-white">
           {languages.map((language, index) => (
             <span
@@ -105,138 +110,118 @@ const ProfileCard = ({
   );
 };
 
-const NextArrow = ({ onClick }) => {
+// Renamed the main component for clarity
+const ImpactingMentorsSlider = () => {
   return (
-    <div
-      className="absolute top-1/2 right-1 transform -translate-y-1/2 bg-white text-gray-800 shadow-md rounded-full mr-0 xl:-mr-10 p-2 cursor-pointer hover:bg-gray-200 z-10"
-      onClick={onClick}
-    >
-      {/* &#9654; */}
-      <img src={arrow} className="w-3 h-3 sm:w-5 sm:h-5 " />
-    </div>
-  );
-};
-
-const PrevArrow = ({ onClick }) => {
-  return (
-    <div
-      className="absolute top-1/2 left-1 transform -translate-y-1/2 bg-white shadow-md rounded-full ml-0 xl:-ml-10 p-2 cursor-pointer z-10 rotate-180"
-      onClick={onClick}
-    >
-      {/* &#9664; */}
-      <img src={arrow} className="w-3 h-3 sm:w-5 sm:h-5 " />
-    </div>
-  );
-};
-
-const App = () => {
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 700,
-    slidesToShow: 4,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 2500,
-    initialSlide: 0,
-    nextArrow: <NextArrow />,
-    prevArrow: <PrevArrow />,
-    responsive: [
-      {
-        breakpoint: 500,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 1350,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 1,
-        },
-      },
-    ],
-  };
-
-  return (
-    <div className="w-[100%] sm:w-[90%] md:w-[100%] xl:w-[90%] mx-auto">
+    // Add `relative group` classes to the container for custom arrow positioning
+    <div className="w-[100%] sm:w-[90%] md:w-[100%] xl:w-[90%] mx-auto relative group">
       <h2 className="text-center text-3xl sm:text-4xl mb-4 font-extrabold text-gray-800 mt-2 ">
         Impacting Mentors
       </h2>
-      <Slider {...settings}>
-        <ProfileCard
-          name="Ishita"
-          role="Software Engineer at Google"
-          experience="7+"
-          rating="4.8"
-          reviews="20"
-          sessions="300"
-          coverImage="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtkR7Lv-42JtJcdbo_-IUc7ZeHSPAamDTPVw&s"
-          profileImage="https://xsgames.co/randomusers/assets/avatars/male/2.jpg"
-          languages={['English', 'JavaScript', 'React']}
-        />
-        <ProfileCard
-          name="John Doe"
-          role="Senior Developer at Amazon"
-          experience="5+"
-          rating="3.2"
-          reviews="50"
-          sessions="200"
-          coverImage="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtkR7Lv-42JtJcdbo_-IUc7ZeHSPAamDTPVw&s"
-          profileImage="https://xsgames.co/randomusers/assets/avatars/male/2.jpg"
-          languages={['English', 'Python', 'Django']}
-        />
-        <ProfileCard
-          name="Jane Smith"
-          role="Product Manager at Netflix"
-          experience="6+"
-          rating="4.9"
-          reviews="70"
-          sessions="250"
-          coverImage="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtkR7Lv-42JtJcdbo_-IUc7ZeHSPAamDTPVw&s"
-          profileImage="https://xsgames.co/randomusers/assets/avatars/male/2.jpg"
-          languages={['English', 'Spanish']}
-        />
-        <ProfileCard
-          name="Jane Smith"
-          role="Product Manager at Netflix"
-          experience="12+"
-          rating="4.4"
-          reviews="50"
-          sessions="400"
-          coverImage="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtkR7Lv-42JtJcdbo_-IUc7ZeHSPAamDTPVw&s"
-          profileImage="https://xsgames.co/randomusers/assets/avatars/male/2.jpg"
-          languages={['English', 'Spanish', 'Python']}
-        />
-        <ProfileCard
-          name="Jane Smith"
-          role="Product Manager at Netflix"
-          experience="6+"
-          rating="5"
-          reviews="200"
-          sessions="500"
-          coverImage="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtkR7Lv-42JtJcdbo_-IUc7ZeHSPAamDTPVw&s"
-          profileImage="https://xsgames.co/randomusers/assets/avatars/male/2.jpg"
-          languages={['English', 'Spanish', 'Java']}
-        />
-      </Slider>
+
+      {/* 2. Implement the Swiper component */}
+      <Swiper
+        // Install the modules you need
+        modules={[Navigation, Pagination, Autoplay]}
+        spaceBetween={20} // Space between slides
+        loop={true}
+        speed={700}
+        autoplay={{
+          delay: 2500,
+          disableOnInteraction: false,
+        }}
+        pagination={{ clickable: true }}
+        // Tell Swiper to use our custom buttons via their class names
+        navigation={{
+          nextEl: '.swiper-button-next-custom',
+          prevEl: '.swiper-button-prev-custom',
+        }}
+        // Swiper uses the 'breakpoints' object for responsiveness
+        breakpoints={{
+          500: { slidesPerView: 1 },
+          768: { slidesPerView: 2 },
+          1024: { slidesPerView: 3 },
+          1350: { slidesPerView: 4 },
+        }}
+        className="pb-12" // Add padding-bottom for pagination dots
+      >
+        {/* 3. Wrap each item in a <SwiperSlide> component */}
+        <SwiperSlide>
+          <ProfileCard
+            name="Ishita"
+            role="Software Engineer at Google"
+            experience="7+"
+            rating="4.8"
+            reviews={20}
+            sessions={300}
+            coverImage="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtkR7Lv-42JtJcdbo_-IUc7ZeHSPAamDTPVw&s"
+            profileImage="https://xsgames.co/randomusers/assets/avatars/male/2.jpg"
+            languages={['English', 'JavaScript', 'React']}
+          />
+        </SwiperSlide>
+        <SwiperSlide>
+          <ProfileCard
+            name="John Doe"
+            role="Senior Developer at Amazon"
+            experience="5+"
+            rating="3.2"
+            reviews={50}
+            sessions={200}
+            coverImage="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtkR7Lv-42JtJcdbo_-IUc7ZeHSPAamDTPVw&s"
+            profileImage="https://xsgames.co/randomusers/assets/avatars/male/2.jpg"
+            languages={['English', 'Python', 'Django']}
+          />
+        </SwiperSlide>
+        <SwiperSlide>
+          <ProfileCard
+            name="Jane Smith"
+            role="Product Manager at Netflix"
+            experience="6+"
+            rating="4.9"
+            reviews={70}
+            sessions={250}
+            coverImage="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtkR7Lv-42JtJcdbo_-IUc7ZeHSPAamDTPVw&s"
+            profileImage="https://xsgames.co/randomusers/assets/avatars/male/2.jpg"
+            languages={['English', 'Spanish']}
+          />
+        </SwiperSlide>
+        <SwiperSlide>
+          <ProfileCard
+            name="Jane Smith"
+            role="Product Manager at Netflix"
+            experience="12+"
+            rating="4.4"
+            reviews={50}
+            sessions={400}
+            coverImage="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtkR7Lv-42JtJcdbo_-IUc7ZeHSPAamDTPVw&s"
+            profileImage="https://xsgames.co/randomusers/assets/avatars/male/2.jpg"
+            languages={['English', 'Spanish', 'Python']}
+          />
+        </SwiperSlide>
+        <SwiperSlide>
+          <ProfileCard
+            name="Jane Smith"
+            role="Product Manager at Netflix"
+            experience="6+"
+            rating="5"
+            reviews={200}
+            sessions={500}
+            coverImage="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtkR7Lv-42JtJcdbo_-IUc7ZeHSPAamDTPVw&s"
+            profileImage="https://xsgames.co/randomusers/assets/avatars/male/2.jpg"
+            languages={['English', 'Spanish', 'Java']}
+          />
+        </SwiperSlide>
+      </Swiper>
+
+      {/* 4. Create your custom navigation buttons outside the Swiper component */}
+      <div className="swiper-button-prev-custom absolute top-1/2 left-1 transform -translate-y-1/2 bg-white shadow-md rounded-full ml-0 xl:-ml-10 p-2 cursor-pointer z-10 rotate-180 opacity-0 group-hover:opacity-100 transition-opacity">
+        <img src={arrow} className="w-3 h-3 sm:w-5 sm:h-5" alt="Previous" />
+      </div>
+      <div className="swiper-button-next-custom absolute top-1/2 right-1 transform -translate-y-1/2 bg-white text-gray-800 shadow-md rounded-full mr-0 xl:-mr-10 p-2 cursor-pointer z-10 opacity-0 group-hover:opacity-100 transition-opacity">
+        <img src={arrow} className="w-3 h-3 sm:w-5 sm:h-5" alt="Next" />
+      </div>
     </div>
   );
 };
 
-export default App;
+export default ImpactingMentorsSlider;

@@ -1,12 +1,14 @@
 import React, { useState, memo } from 'react';
 import PropTypes from 'prop-types';
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
 import { motion } from 'framer-motion';
 import { mentors } from '@/Constants/Home-Constants/heroSectionMentor';
 
-// eslint-disable-next-line react/display-name
+// 1. Import Swiper components, modules, and styles
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay } from 'swiper/modules';
+import 'swiper/css';
+
+// The ProfileCard component itself does not need any changes
 const ProfileCard = memo(
   ({ name, role, category, profileImage, languages, isActive }) => (
     <motion.div
@@ -16,7 +18,6 @@ const ProfileCard = memo(
       className="flex justify-center py-6"
     >
       <div className="w-80 rounded-2xl shadow-xl overflow-hidden font-sans">
-        {/* Top Section with Soft Gradient */}
         <div className="bg-gradient-to-r from-gray-200 via-gray-100 to-white pt-10 pb-16 flex justify-center relative rounded-t-2xl">
           <div className="absolute top-full -translate-y-1/2 w-24 h-24 rounded-full border-4 border-white overflow-hidden shadow-md">
             <img
@@ -31,8 +32,6 @@ const ProfileCard = memo(
             />
           </div>
         </div>
-
-        {/* Bottom Section with Details */}
         <div className="bg-white px-5 pt-14 pb-6 text-center rounded-b-2xl">
           <h3 className="text-lg font-semibold text-gray-800">{name}</h3>
           <p className="text-sm text-gray-600">{role}</p>
@@ -40,9 +39,6 @@ const ProfileCard = memo(
             Inspire You In{' '}
             <span className="font-bold text-purple-600">{category}</span>
           </p>
-
-          {/* Language Tags with Purple Border */}
-          {/* Language Tags with Neutral Style */}
           <div className="flex flex-wrap justify-center gap-2 mt-4">
             {languages.map((lang, index) => (
               <span
@@ -69,35 +65,36 @@ ProfileCard.propTypes = {
 };
 
 const ImpactingMentorsHero = () => {
-  const [activeIndex, setActiveIndex] = useState(1);
-
-  const settings = {
-    dots: false,
-    arrows: false,
-    infinite: true,
-    speed: 1200,
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 2500,
-    vertical: true,
-    verticalSwiping: true,
-    beforeChange: (current, next) => {
-      setActiveIndex(next);
-    },
-  };
+  // Swiper is 0-indexed, so we start with 0.
+  const [activeIndex, setActiveIndex] = useState(0);
 
   return (
     <div className="w-full -z-10">
-      <Slider {...settings}>
+      {/* 2. Implement the Swiper component */}
+      <Swiper
+        // Install the modules you need
+        modules={[Autoplay]}
+        direction="vertical"
+        slidesPerView={3}
+        spaceBetween={0} // No space between vertical slides
+        loop={true}
+        speed={1200}
+        autoplay={{
+          delay: 2500,
+          disableOnInteraction: false,
+        }}
+        // Use onSlideChange to update the active index. Use `realIndex` for looped sliders.
+        onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
+        // Vertical sliders require a fixed height on their container
+        className="h-[650px] md:h-[700px]"
+      >
+        {/* 3. Wrap each card in a SwiperSlide */}
         {mentors.map((mentor, index) => (
-          <ProfileCard
-            key={index}
-            {...mentor}
-            isActive={index === activeIndex}
-          />
+          <SwiperSlide key={index}>
+            <ProfileCard {...mentor} isActive={index === activeIndex} />
+          </SwiperSlide>
         ))}
-      </Slider>
+      </Swiper>
     </div>
   );
 };

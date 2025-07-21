@@ -1,50 +1,56 @@
-// import React from 'react'
+import React from 'react';
 import PropTypes from 'prop-types';
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
 import inspiration_logo from '@/assets/inspiration_logo.png';
 
-function CommunityCarousel({ communities }) {
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 1200,
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    autoplay: true, // Enable autoplay
-    autoplaySpeed: 1000, // Set autoplay speed (in milliseconds)
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-          infinite: true,
-          dots: true,
-        },
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
-  };
+// 1. Import Swiper components, modules, and styles
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Pagination, Autoplay } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/pagination';
 
+function CommunityCarousel({ communities }) {
   return (
     <div
       className="community-carousel-container overflow-hidden md:mx-auto"
       style={{ maxWidth: '1400px' }}
     >
-      <Slider {...settings}>
+      {/* 2. Implement the Swiper component */}
+      <Swiper
+        // Install the modules you need
+        modules={[Pagination, Autoplay]}
+        spaceBetween={30} // Creates the space between slides
+        loop={true}
+        speed={1200}
+        autoplay={{
+          delay: 1000,
+          disableOnInteraction: false,
+        }}
+        pagination={{ clickable: true }}
+        // The `responsive` array is replaced by the `breakpoints` object
+        breakpoints={{
+          // when window width is >= 600px
+          600: {
+            slidesPerView: 1,
+            spaceBetween: 20,
+          },
+          // when window width is >= 1024px
+          1024: {
+            slidesPerView: 2,
+            spaceBetween: 30,
+          },
+          // when window width is >= 1400px (or your default)
+          1400: {
+            slidesPerView: 3,
+            spaceBetween: 30,
+          },
+        }}
+        className="pb-12" // Add padding-bottom to make space for the pagination dots
+      >
+        {/* 3. Wrap each item in a SwiperSlide */}
         {communities.map((eachCommunity, index) => (
-          <div key={index} className="p-5 ">
-            {/* entire community card  */}
+          <SwiperSlide key={index}>
+            {/* The original card structure can remain, but remove the outer padding div */}
             <div className="p-6 rounded-2xl h-[350px] border flex flex-row flex-wrap shadow-xl shadow-purple-700 hover:shadow-lg hover:shadow-[#6F00FF]">
-              {/* header image */}
               <div className="w-10 inline-flex items-center justify-center rounded-full bg-transparent text-indigo-500 mb-4">
                 <img
                   src={inspiration_logo}
@@ -59,20 +65,14 @@ function CommunityCarousel({ communities }) {
                   alt="Community Logo"
                 />
               </div>
-
-              {/* title */}
               <div>
-                <h2 className="text-lg text-gray-900  font-bold title-font mb-2  ">
+                <h2 className="text-lg text-gray-900 font-bold title-font mb-2">
                   {eachCommunity.title}
                 </h2>
-
-                {/* description */}
-                <p className="leading-relaxed text-base mb-2  ">
+                <p className="leading-relaxed text-base mb-2">
                   {eachCommunity.description}
                 </p>
               </div>
-
-              {/* button */}
               <div>
                 <a
                   href={eachCommunity.join_now}
@@ -98,9 +98,9 @@ function CommunityCarousel({ communities }) {
                 </a>
               </div>
             </div>
-          </div>
+          </SwiperSlide>
         ))}
-      </Slider>
+      </Swiper>
     </div>
   );
 }

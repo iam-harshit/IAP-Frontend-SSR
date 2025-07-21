@@ -1,6 +1,6 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import ssr from 'vike/plugin';
+import vike from 'vike/plugin';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
@@ -14,12 +14,27 @@ export default defineConfig({
       '@': path.resolve(__dirname, 'src'),
     },
   },
-  plugins: [react(), ssr()],
+  plugins: [react(), vike()],
   server: {
     proxy: {
       '/api': 'http://localhost:5000',
     },
     host: true,
     port: 3001,
+  },
+  ssr: {
+    noExternal: [
+      '@reduxjs/toolkit',
+      'react-redux',
+      'redux-persist',
+      '@heroui/react',
+      '@mui/material',
+      'rsuite',
+      'react-slick',
+      'slick-carousel',
+      'react-simple-typewriter',
+      'class-variance-authority', // Added for safety
+      'clsx', // Added for safety
+    ],
   },
 });

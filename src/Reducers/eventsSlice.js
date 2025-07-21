@@ -1,7 +1,5 @@
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { getAllSlots } from '@/services/Operations/EventsOperation.js/EventsApi';
-import pkg from '@reduxjs/toolkit';
-
-const { createAsyncThunk, createSlice } = pkg;
 
 const initialState = {
   slots: [],
@@ -17,8 +15,7 @@ export const fetchSlots = createAsyncThunk(
       console.log(response, 'Get All Slots');
       return response.data;
     } catch (error) {
-      rejectWithValue(error);
-      return error;
+      return rejectWithValue(error.toString());
     }
   }
 );
@@ -43,15 +40,13 @@ const eventsSlice = createSlice({
       })
       .addCase(fetchSlots.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.error.message;
+        state.error = action.payload;
       });
   },
 });
 
-export const { setSlots, setLoading, setError } = eventsSlice.actions;
-
+export const { setSlots } = eventsSlice.actions;
 export const selectSlots = (state) => state.events.slots;
 export const selectSlotLoading = (state) => state.events.loading;
 export const selectSlotError = (state) => state.events.error;
-
 export default eventsSlice.reducer;
