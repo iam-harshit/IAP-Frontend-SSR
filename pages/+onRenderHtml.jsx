@@ -7,7 +7,7 @@ import { createServerStore } from '@/Store/store.js';
 import { StaticRouter } from 'react-router-dom/server';
 
 // 1. Import 'react-helmet-async' as suggested by the error message
-import HelmetAsync from 'react-helmet-async';
+import * as HelmetAsync from 'react-helmet-async';
 const { HelmetProvider } = HelmetAsync;
 
 export async function onRenderHtml(pageContext) {

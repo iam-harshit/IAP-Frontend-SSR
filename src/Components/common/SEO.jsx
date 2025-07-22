@@ -1,6 +1,7 @@
 import React from 'react';
-// import { Helmet } from 'react-helmet-async';
-import HelmetPkg from 'react-helmet-async';
+// 1. Correct the import to handle the CommonJS module correctly.
+// We import the entire module as a single object.
+import * as HelmetAsync from 'react-helmet-async';
 import PropTypes from 'prop-types';
 import { useLocation } from 'react-router-dom';
 
@@ -12,11 +13,11 @@ const SEO = ({
   type = 'website',
   structuredData,
 }) => {
-  const { Helmet } = HelmetPkg;
+  // 2. The Helmet component is now a property of the imported module.
+  const { Helmet } = HelmetAsync;
   const location = useLocation();
   const defaultCanonical = `https://inspirationapp.org${location.pathname}`;
   const defaultImage = `https://shorturl.at/GOMfE`; //WIP : We need to change this
-  // console.log(defaultCanonical);
 
   return (
     <Helmet>

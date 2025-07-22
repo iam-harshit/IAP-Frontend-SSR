@@ -1,6 +1,5 @@
 import React from 'react';
 import { PageContextProvider } from 'vike-react/usePageContext';
-import { Provider } from 'react-redux';
 
 // 1. Import your main CSS file here
 import '@/index.css';

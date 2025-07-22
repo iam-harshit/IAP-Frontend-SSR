@@ -1,37 +1,22 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import MentorHome from '@/components/pages/Mentor-Page/MentorHome';
 import Header from '@/components/common/Header';
 import Footer from '@/components/common/Footer';
-import MentorCard from '@/components/pages/Mentor-Page/MentorCard'; // Assuming you have a MentorCard component
 
-export default function ExploreMentorsPage() {
-  // Read the mentors data from the Redux store.
-  // This data was pre-loaded on the server by your +data.js file.
-  const {
-    list: mentors,
-    loading,
-    error,
-  } = useSelector((state) => state.mentors);
-
+// 1. Vike passes `pageProps` from your data hook here.
+export default function ExploreMentorsPage({
+  initialMentors,
+  initialMetadata,
+}) {
   return (
-    <div>
+    <>
       <Header />
-      <main className="container mx-auto p-4">
-        <h1 className="text-3xl font-bold mb-6">Explore Our Mentors</h1>
-
-        {loading && <p>Loading...</p>}
-        {error && <p className="text-red-500">{error}</p>}
-
-        {/* Check if mentors array is empty */}
-        {!loading && !error && mentors.length === 0 && <p>No mentors found.</p>}
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {mentors.map((mentor) => (
-            <MentorCard mentor={mentor} />
-          ))}
-        </div>
-      </main>
+      {/* 2. Pass the pre-fetched data down to your actual component */}
+      <MentorHome
+        initialMentors={initialMentors}
+        initialMetadata={initialMetadata}
+      />
       <Footer />
-    </div>
+    </>
   );
 }
